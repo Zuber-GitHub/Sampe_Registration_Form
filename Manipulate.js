@@ -10,3 +10,5 @@ console.log(list[2].style.backgroundColor = 'green')
 for(i of list){
     i.style.fontWeight = 'bold'
 }
+console.log(document.getElementsByClassName('list-group')[0].children[4].textContent = "Modified by Class Name")
+console.log(document.getElementsByTagName('li')[4].textContent = 'Modified by Tagname')
