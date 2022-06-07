@@ -22,8 +22,32 @@
 // let item  = document.querySelectorAll(".list-group")
 // console.log(item[0].children[1].style.backgroundColor = 'green')
 
-let item  = document.querySelectorAll(".list-group")[0].children
-console.log(item.length)
-for(let i=0;i<item.length;i=i+2){
-    item[i].style.backgroundColor = 'green'
-}
+// let item  = document.querySelectorAll(".list-group")[0].children
+// console.log(item.length)
+// for(let i=0;i<item.length;i=i+2){
+//     item[i].style.backgroundColor = 'green'
+// }
+
+const newDiv = document.createElement('div')
+newDiv.className = 'items'
+newDiv.id = 'item'
+let newDivText = document.createTextNode("Hello World")
+newDiv.appendChild(newDivText)
+newDiv.setAttribute('title','Text Appended before header')
+let container = document.querySelector('.container')
+console.log(container)
+let h1 = document.querySelector('header h1')
+container.insertBefore(newDiv,h1)
+
+let firstDiv  = document.createElement('div')
+
+firstDiv.id = 'firstDivId'
+
+let firstDivDicText = document.createTextNode('Text before items')
+firstDiv.appendChild(firstDivDicText)
+
+let temp = (document.querySelector('#items'))
+
+let container_01 = document.querySelector("#main")
+console.log(container_01)
+container_01.insertBefore(firstDiv,temp)
