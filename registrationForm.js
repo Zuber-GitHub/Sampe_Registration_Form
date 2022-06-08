@@ -2,6 +2,28 @@ let formName = document.getElementsByTagName("form")[0]
 let display = formName.addEventListener('submit',sendData)
 let count_01 = 0
 
+
+document.addEventListener('DOMContentLoaded', function(){
+    for (let i = 0; i < localStorage.length; i++) {
+        
+        if(i==localStorage.length-1)
+
+        {   
+            console.log(i)
+            const keyval = localStorage.key(i);
+            
+            const val = localStorage.getItem(keyval)
+            let newVal = JSON.parse(val)
+            
+            document.getElementById("fname").value = newVal.Name
+            console.log(newVal.Name)
+        }
+    
+    }
+
+}
+
+)
 function sendData(e)
 
 
@@ -14,6 +36,7 @@ function sendData(e)
     "Phone": document.getElementById("phone").value,
     "Time":  document.getElementById("birthdaytime").value,
     "count_01":count_01
+    
     }
     
     let serializedObj = JSON.stringify(infoObj)
@@ -25,6 +48,7 @@ function sendData(e)
     li.appendChild(document.createTextNode(reloadString.Name + " " + 'Email is:' +  reloadString.Email))
     let mainClass = document.querySelector('#users')
     mainClass.appendChild(li)
+  
 
     
     
@@ -45,3 +69,8 @@ function sendData(e)
 // document.getElementById("email").value = reloadString.Email
 // document.getElementById("phone").value = reloadString.Phone
 // document.getElementById("birthdaytime").value = reloadString.Time
+
+
+
+
+
