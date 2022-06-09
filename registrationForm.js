@@ -8,15 +8,15 @@ document.addEventListener('DOMContentLoaded', function(){
         
         if(i==localStorage.length-1)
 
-        {   
-            console.log(i)
+        {   count_01+=1
+            
             const keyval = localStorage.key(i);
             
             const val = localStorage.getItem(keyval)
             let newVal = JSON.parse(val)
             
             document.getElementById("fname").value = newVal.Name
-            console.log(newVal.Name)
+            
         }
     
     }
@@ -28,7 +28,7 @@ function sendData(e)
 
 
 {   
-    count_01+=1
+    // count_01+=1
     e.preventDefault()
     let infoObj= {
     "Name": document.getElementById("fname").value,
@@ -40,14 +40,76 @@ function sendData(e)
     }
     
     let serializedObj = JSON.stringify(infoObj)
-    let newName = localStorage.setItem(infoObj.count_01,serializedObj)
-    let reloadObj = localStorage.getItem(infoObj.count_01)
+    let newName = localStorage.setItem(infoObj.Name,serializedObj)
+    let reloadObj = localStorage.getItem(infoObj.Name)
     let reloadString = JSON.parse(reloadObj)
     let li = document.createElement('li')
     li.className = 'listItems'
     li.appendChild(document.createTextNode(reloadString.Name + " " + 'Email is:' +  reloadString.Email))
     let mainClass = document.querySelector('#users')
     mainClass.appendChild(li)
+    function createDelButton()
+    {
+        let button = document.createElement('button')
+        button.innerHTML = "Delete"
+        button.className = 'deleteButton'
+        button.id = 'deleteButton'
+        button.setAttribute('title','Deletes the User')
+        button.style.backgroundColor = 'red'
+        button.style.border = 'solid 1px orange'
+        button.style.alignContent = 'right  '       
+        li.appendChild(button)
+        return button
+    }
+    let buttonActive = createDelButton()
+    
+
+    let editBtn = document.createElement('button')
+    editBtn.innerHTML = "Edit"
+    editBtn.className = 'editButton'
+    editBtn.id = 'editButton'
+    editBtn.setAttribute('title','Edit the User details')
+    editBtn.style.backgroundColor = 'white'
+    editBtn.style.border = 'solid 1px orange'
+        
+    li.appendChild(editBtn)
+
+
+    buttonActive.addEventListener('click', deleteButton)
+    function deleteButton()
+    {   if(confirm('Are you sure?'))
+        {
+            mainClass.removeChild(li)
+            localStorage.removeItem(reloadString.Name)
+
+            
+        }
+        
+    }
+
+    editBtn.addEventListener('click', function(){
+        let editUserName = prompt('Edit Name')
+        let editUserEmail = prompt('Edit Email')
+        li.textContent = editUserName + " " + 'Email is:' + editUserEmail 
+        let newButton = createDelButton()
+        newButton.addEventListener('click',function()
+        {
+            deleteButton()
+        })
+        
+      
+
+        
+
+        // deleteButton()
+
+        
+      
+    
+        
+        
+
+    })
   
 
     
